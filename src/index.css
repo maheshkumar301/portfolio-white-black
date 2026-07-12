@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+    --surface: 244 244 245;
+    --surface-highlight: 228 228 231;
+    --border: 212 212 216;
+    --muted: 113 113 122;
+    --inverse: 0 0 0;
+    --inverse-foreground: 255 255 255;
+  }
+  
+  :root.dark {
+    --background: 0 0 0;
+    --foreground: 255 255 255;
+    --surface: 10 10 10;
+    --surface-highlight: 24 24 27;
+    --border: 39 39 42;
+    --muted: 113 113 122;
+    --inverse: 255 255 255;
+    --inverse-foreground: 0 0 0;
+  }
+
+  body {
+    @apply bg-background text-foreground scroll-smooth overflow-x-hidden font-sans transition-colors duration-500;
+  }
+}
+
+/* Hide scrollbar globally for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Hide scrollbar globally for IE, Edge and Firefox */
+html, body {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+/* Minimalist Custom Utilities */
+@layer utilities {
+  .border-b-hover {
+    @apply relative overflow-hidden;
+  }
+  .border-b-hover::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[1px] bg-foreground transform scale-x-0 origin-right transition-transform duration-300;
+  }
+  .border-b-hover:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+}
