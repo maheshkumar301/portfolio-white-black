@@ -73,7 +73,18 @@ function About({ personal }) {
             <h2 className="font-mono text-xs uppercase tracking-[0.4em] text-muted mb-12">Core Philosophy</h2>
             
             <p className="font-sans text-2xl md:text-5xl text-foreground leading-[1.3] tracking-tight">
-              I build <span className="font-display italic text-muted">digital experiences</span> that sit at the intersection of stark minimalism and robust engineering. 
+              {"I build digital experiences that sit at the intersection of stark minimalism and robust engineering.".split(" ").map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  className="inline-block mr-2 md:mr-3"
+                >
+                  {word === "digital" || word === "experiences" ? <span className="font-display italic text-muted">{word}</span> : word}
+                </motion.span>
+              ))}
             </p>
             <br />
             <p className="font-sans text-xl md:text-3xl text-muted leading-relaxed max-w-3xl">

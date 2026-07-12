@@ -35,16 +35,25 @@ function Hero({ data }) {
           <span className="font-mono text-xs uppercase tracking-[0.4em] text-muted">System Initialized</span>
         </motion.div>
         
-        <motion.h1 
-          style={{ y: y2 }}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-[20vw] md:text-[10vw] uppercase leading-[0.8] tracking-tighter mix-blend-difference text-inverse"
-        >
-          {data.role[0]} <br/> 
-          <span className="text-muted/50 mix-blend-normal text-[15vw] md:text-[10vw]">Developer</span>
-        </motion.h1>
+        <div className="overflow-hidden">
+          <motion.h1 
+            style={{ y: y2 }}
+            initial={{ opacity: 0, y: 150 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="font-display text-[20vw] md:text-[10vw] uppercase leading-[0.8] tracking-tighter mix-blend-difference text-inverse"
+          >
+            {data.role[0]} <br/> 
+            <motion.span 
+              initial={{ opacity: 0, filter: "blur(10px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 2, delay: 0.8 }}
+              className="text-muted/50 mix-blend-normal text-[15vw] md:text-[10vw] inline-block"
+            >
+              Developer
+            </motion.span>
+          </motion.h1>
+        </div>
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-16 gap-8">
           <motion.p 

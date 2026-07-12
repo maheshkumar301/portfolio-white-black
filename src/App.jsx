@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { motion, useSpring, useScroll } from 'framer-motion';
 import NavBar from './components/NavBar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -13,6 +13,9 @@ function App() {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const cursorX = useSpring(-100, { stiffness: 500, damping: 28 });
   const cursorY = useSpring(-100, { stiffness: 500, damping: 28 });
+  
+  const { scrollYProgress } = useScroll();
+  const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -39,13 +42,20 @@ function App() {
 
   return (
     <div className="bg-background text-foreground min-h-screen selection:bg-inverse selection:text-inverse-foreground">
+      
+      {/* Global Scroll Progress Bar */}
+      <motion.div 
+        className="fixed top-0 right-0 w-1 md:w-2 h-full bg-foreground z-[9999] origin-top"
+        style={{ scaleY }}
+      />
+
       {/* Brutalist Custom Cursor */}
       <motion.div 
-        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] border-2 border-foreground mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9998] border-2 border-foreground mix-blend-difference hidden md:block"
         style={{ x: cursorX, y: cursorY }}
       />
       <motion.div 
-        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[10000] bg-foreground mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999] bg-foreground mix-blend-difference hidden md:block"
         style={{ x: cursorX, y: cursorY, translateX: 12, translateY: 12 }}
       />
 
@@ -53,7 +63,7 @@ function App() {
       
       <main className="relative overflow-hidden pt-24">
         <Hero data={portfolioData.personalInfo} />
-        <About personal={portfolioData.personalInfo} domain={portfolioData.skills.domain} />
+        <About personal={portfolioData.personalInfo} />
         <Skills skills={portfolioData.skills} />
         <Experience experiences={portfolioData.experiences} />
         <Projects projects={portfolioData.projects} />
