@@ -41,7 +41,7 @@ function Hero({ data }) {
             initial={{ opacity: 0, y: 150 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="font-display text-[20vw] md:text-[10vw] uppercase leading-[0.8] tracking-tighter mix-blend-difference text-inverse"
+            className="font-display text-[15vw] md:text-[10vw] uppercase leading-[0.8] tracking-tighter mix-blend-difference text-inverse"
           >
             {data.role[0]} <br/> 
             <motion.span 

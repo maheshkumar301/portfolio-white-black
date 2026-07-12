@@ -57,34 +57,30 @@ function Contact({ data }) {
               viewport={{ once: true }}
               className="flex flex-col gap-4"
             >
-              <label className="font-mono text-xs uppercase tracking-widest text-muted">01. What's your name?</label>
+              <div className="font-sans text-2xl md:text-5xl leading-relaxed md:leading-[1.4] tracking-tight max-w-4xl">
+              Hello, my name is{' '}
               <input 
                 type="text" 
-                className="w-full bg-transparent border-b border-border py-4 font-sans text-2xl focus:outline-none focus:border-foreground transition-colors" 
-                placeholder="John Doe" 
+                name="name"
                 value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="bg-transparent border-b border-border w-[150px] md:w-[250px] text-center focus:outline-none focus:border-foreground transition-colors placeholder:text-muted/30 mb-2 md:mb-0"
               />
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="flex flex-col gap-4"
-            >
-              <label className="font-mono text-xs uppercase tracking-widest text-muted">02. What's your email?</label>
+              {' '}and I'm looking for a creative developer to help me with{' '}
+              <input 
+                type="text" 
+                name="project"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="A Website, App..."
+                className="bg-transparent border-b border-border w-full md:w-[350px] text-center focus:outline-none focus:border-foreground transition-colors placeholder:text-muted/30 mb-2 md:mb-0 mt-4 md:mt-0"
+              />
+              .{' '}You can reach me at{' '}
               <input 
                 type="email" 
-                className="w-full bg-transparent border-b border-border py-4 font-sans text-2xl focus:outline-none focus:border-foreground transition-colors" 
-                placeholder="john@example.com" 
+                name="email"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-              />
-            </motion.div>
-            
-            <motion.div 
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
